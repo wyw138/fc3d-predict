@@ -1,18 +1,15 @@
 name: 福彩3D 每日预测
 
 on:
+  push:
+    branches: [master]
   schedule:
-    # 北京时间 09:00 (UTC+8 → UTC 01:00)
     - cron: '0 1 * * *'
-    # 北京时间 20:50
     - cron: '50 12 * * *'
-    # 北京时间 21:18
     - cron: '18 13 * * *'
-    # 北京时间 22:00
     - cron: '0 14 * * *'
-    # 北京时间 06:30 (次日兜底)
     - cron: '30 22 * * *'
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:
 
 jobs:
   predict:
