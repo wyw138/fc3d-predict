@@ -1,0 +1,42 @@
+name: 基金守护者 智能监控
+
+on:
+  schedule:
+    # 北京时间 09:15 早盘前扫新闻
+    - cron: '15 1 * * 1-5'
+    # 北京时间 12:00 午间更新
+    - cron: '0 4 * * 1-5'
+    # 北京时间 14:30 尾盘监控
+    - cron: '30 6 * * 1-5'
+    # 北京时间 15:30 收盘快报
+    - cron: '30 7 * * 1-5'
+    # 北京时间 21:00 净值更新+完整分析
+    - cron: '0 13 * * *'
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 安装依赖
+        run: |
+          pip install -r fund-guardian/requirements.txt
+          pip install rich python-dotenv schedule
+
+      - name: 运行基金分析
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+        run: |
+          cd fund-guardian
+          python main.py --once

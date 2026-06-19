@@ -1,0 +1,42 @@
+{
+  "003095": {
+    "prev_action": "hold",
+    "cost_nav": 0,
+    "highest_nav": 0
+  },
+  "001156": {
+    "prev_action": "hold",
+    "cost_nav": 0,
+    "highest_nav": 0
+  },
+  "000085": {
+    "prev_action": "hold",
+    "cost_nav": 0,
+    "highest_nav": 0
+  },
+  "161017": {
+    "prev_action": "hold",
+    "cost_nav": 0,
+    "highest_nav": 0
+  },
+  "110022": {
+    "prev_action": "hold",
+    "cost_nav": 0,
+    "highest_nav": 0
+  },
+  "090010": {
+    "prev_action": "hold",
+    "cost_nav": 0,
+    "highest_nav": 0
+  },
+  "110020": {
+    "prev_action": "hold",
+    "cost_nav": 0,
+    "highest_nav": 0
+  },
+  "320007": {
+    "prev_action": "hold",
+    "cost_nav": 0,
+    "highest_nav": 0
+  }
+}
