@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+scheduler.log
+data/last_prediction.json
+data/prediction_history.json

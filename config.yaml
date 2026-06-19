@@ -1,0 +1,99 @@
+# 福彩3D 预测系统配置文件
+# ⚠ 纯娱乐用途，彩票开奖是独立随机事件
+
+# ── 数据源 ──
+data:
+  primary_url: "https://www.cwl.gov.cn/cwl_admin/front/cwlkj/search/kjxx/findDrawNotice"
+  backup_urls:
+    - "https://www.cwl.gov.cn/cwl_admin/front/cwlkj/search/kjxx/findDrawNotice"
+  fetch_pages: 30          # 首次抓取页数 (每页30条)
+  request_delay: 0.8       # 请求间隔(秒)
+  cache_file: "data/history.json"
+  db_file: "data/features.db"
+
+# ── 开奖时间 ──
+schedule:
+  draw_time: "21:15"           # 每天开奖时间
+  poll_start: "21:18"          # 第一轮轮询
+  poll_second: "22:00"         # 第二轮轮询（API可能延迟）
+  poll_morning: "06:30"        # 次日早晨补询（兜底）
+  poll_interval: 60            # 轮询间隔(秒)
+  poll_max_duration: 1800      # 最长轮询时间(秒) = 30分钟
+  predict_after_fetch: true    # 抓取后立即运行预测
+  morning_reminder: "09:00"    # 晨间提醒
+  cutoff_reminder: "20:50"     # 投注截止提醒
+  timezone: "Asia/Shanghai"
+
+# ── 飞书机器人 ──
+feishu:
+  webhook_url: "https://open.feishu.cn/open-apis/bot/v2/hook/b5cfdcb6-fe56-4c59-80b3-e74c41864d6a"
+  enable: true
+
+# ── 预测策略 ──
+strategies:
+  # 规则策略
+  hot_weighted:
+    enable: true
+    weight: 1.0
+    samples: 50
+  cold_rebound:
+    enable: true
+    weight: 1.0
+    samples: 50
+  sum_regression:
+    enable: true
+    weight: 1.0
+    samples: 50
+  pattern_follow:
+    enable: true
+    weight: 1.0
+    samples: 50
+  missing_combo:
+    enable: true
+    weight: 1.0
+    samples: 50
+  pure_random:
+    enable: true
+    weight: 1.0
+    samples: 50
+  # 统计策略
+  markov_chain:
+    enable: true
+    weight: 1.0
+    max_steps: 5
+    samples: 50
+  multi_score:
+    enable: true
+    weight: 1.0
+    samples: 50
+  ma_trend:
+    enable: true
+    weight: 1.0
+    samples: 50
+  # ML策略
+  xgboost:
+    enable: true
+    weight: 1.0
+    samples: 50
+  # 贝叶斯学术策略
+  cdm_bayesian:
+    enable: true
+    weight: 1.2
+    samples: 50
+
+# ── 集成投票 ──
+ensemble:
+  top_n: 5              # 最终输出号码数
+  voting_methods:
+    - "frequency"       # 频率投票
+    - "position"        # 位选投票
+    - "weighted"        # 加权投票
+
+# ── 回测 ──
+backtest:
+  window_size: 30       # 滚动窗口大小
+  test_periods: 100     # 测试期数
+  monte_carlo_runs: 10000
+
+# ── 风险提示 ──
+disclaimer: "⚠ 彩票开奖是独立随机事件，所有预测仅供娱乐，不构成投注建议。请理性购彩，量力而行。"

@@ -1,0 +1,9 @@
+services:
+  fc3d:
+    build: .
+    container_name: fc3d_predict
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+    environment:
+      - TZ=Asia/Shanghai
