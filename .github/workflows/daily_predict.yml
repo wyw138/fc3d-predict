@@ -1,8 +1,6 @@
 name: 福彩3D 每日预测
 
 on:
-  push:
-    branches: [master]
   schedule:
     - cron: '0 1 * * *'
     - cron: '50 12 * * *'
