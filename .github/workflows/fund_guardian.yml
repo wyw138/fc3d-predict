@@ -35,7 +35,8 @@ jobs:
 
       - name: 运行基金分析
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY || '' }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY || '' }}
           FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
         run: |
           cd fund-guardian
