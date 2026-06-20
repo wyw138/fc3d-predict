@@ -1,1 +1,3 @@
-CreateObject("Wscript.Shell").Run """D:\Claude 桌面\fc3d_predict\start.bat""", 0, False
+Set ws = CreateObject("Wscript.Shell")
+ws.CurrentDirectory = CreateObject("Scripting.FileSystemObject").GetParentFolderName(WScript.ScriptFullName)
+ws.Run "start.bat", 0, False
